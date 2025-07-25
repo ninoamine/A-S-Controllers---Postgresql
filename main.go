@@ -1,17 +1,16 @@
 package main
 
 import (
-	"github.com/jackc/pgx/v5"
 	"context"
-	"fmt"
 	"os"
+	"github.com/ninoamine/A-S-Controllers---Postgresql/pkg/postgresql"
 )
 
 
 func main() {
-	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+	url := os.Getenv("DATABASE_URL")
+	conn, err := postgresql.ConnectToDB(url)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
 	}
 	defer conn.Close(context.Background())
