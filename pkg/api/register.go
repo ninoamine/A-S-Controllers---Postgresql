@@ -27,3 +27,7 @@ func addKnownTypes(scheme *runtime.Scheme) error {
     metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
     return nil
 }
+
+func AddToScheme(scheme *runtime.Scheme) error {
+	return addKnownTypes(scheme)
+}
